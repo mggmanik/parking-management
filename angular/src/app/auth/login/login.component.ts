@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private matSnackbar: MatSnackBar,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -41,11 +43,9 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value)
       this.authService.login(this.loginForm.value).subscribe(user => {
         if (user && user.Authorization) {
-          // this.router.navigateByUrl('/dashboard');
-          console.log(user)
+          this.router.navigateByUrl('/dashboard');
         } else {
           this.matSnackbar.open('Incorrect credentials. Please try again.', 'OK', { duration: 3000 })
         }
