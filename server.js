@@ -17,6 +17,7 @@ const path = require('path')
 const userRoute = require("./app/routes/user.routes");
 const parkingZoneRoute = require("./app/routes/parking-zone.route");
 const parkingSpaceRoute = require("./app/routes/parking-space.route");
+const vehicleParkingRoute = require("./app/routes/vehicle-parking.route");
 
 app.use(bodyParser.json({ limit: '100mb' }))
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -54,6 +55,7 @@ else
 app.use("/api/v1/auth", userRoute);
 app.use("/api/v1/parkingzone", parkingZoneRoute);
 app.use("/api/v1/parkingspace", parkingSpaceRoute);
+app.use("/api/v1/vehicleparking", vehicleParkingRoute);
 
 // Setup server port
 var port = process.env.PORT || 3000;

@@ -59,7 +59,7 @@ exports.update = async (req, res) => {
     const id = req.params._id
     if (!id) {
         res.status(404).json({
-            message: "No Spae ID"
+            message: "No Space ID"
         })
         return;
     }
