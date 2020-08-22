@@ -6,5 +6,6 @@ const vehicleParkingController = require('../controllers/vehicle-parking.control
 
 router.route('/create').post(auth, vehicleParkingController.create);
 router.route('/update/:_id').put(auth, vehicleParkingController.update);
+router.route('/deleteAll').delete(auth, vehicleParkingController.deleteAll);
 
 module.exports = router;

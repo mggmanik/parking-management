@@ -30,7 +30,14 @@ export class HomeComponent implements OnInit {
   onReset() {
     this.dashboardService.resetParkingSpaces().subscribe(res => {
       if (res && res.data) {
-        this.fetchParkingSpaceByZoneID(this.index);
+        this.dashboardService.deleteAllVehicleParkings().subscribe(res => {
+          if (res && res.data) {
+            this.fetchParkingSpaceByZoneID(this.index);
+          }
+          else {
+            this.matSnackbar.open('Something went wrong !', 'OK', { duration: 3000 })
+          }
+        })
       }
       else {
         this.matSnackbar.open('Something went wrong !', 'OK', { duration: 3000 })

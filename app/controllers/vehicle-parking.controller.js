@@ -53,3 +53,29 @@ exports.update = async (req, res) => {
         return;
     }
 }
+
+exports.deleteAll = async (req, res) => {
+    try {
+        await vehicleParking.deleteMany({}, function (err, reply) {
+            if (err) {
+                res.status(404).json({
+                    message: err
+                })
+                return;
+            }
+            else {
+                res.status(200).json({
+                    message: "deleted successfully",
+                    data: reply
+                })
+            }
+
+        })
+    }
+    catch (err) {
+        res.status(404).json({
+            message: err
+        })
+        return;
+    }
+}

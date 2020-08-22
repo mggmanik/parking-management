@@ -84,4 +84,15 @@ export class DashboardService {
       }
     )
   }
+
+  deleteAllVehicleParkings() {
+    let token = this.getToken();
+    return this.http.delete<any>(`${environment.apiUrl}/vehicleparking/deleteAll`,
+      {
+        headers: new HttpHeaders({
+          Authorization: token
+        })
+      }
+    )
+  }
 }
