@@ -17,6 +17,23 @@ exports.create = async (req, res) => {
     }
 }
 
+exports.fetch = async (req, res) => {
+    try {
+        const spaces = await parkingSpace.find().sort({ space_title: 1 });
+
+        res.status(200).json({
+            message: 'List of Spaces',
+            data: spaces,
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            message: error
+        })
+        return;
+    }
+}
+
 exports.updateAll = async (req, res) => {
     var set = {};
 

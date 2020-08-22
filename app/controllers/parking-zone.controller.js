@@ -19,7 +19,7 @@ exports.create = async (req, res) => {
 
 exports.fetch = async (req, res) => {
     try {
-        const zones = await parkingZone.find();
+        const zones = await parkingZone.find().sort({ zone_title: 1 });
 
         res.status(200).json({
             message: 'List of Zones',
