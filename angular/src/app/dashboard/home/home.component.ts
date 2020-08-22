@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchParkingZones();
-    this.fetchParkingSpaces();
+    // this.fetchParkingSpaces();
   }
 
   fetchParkingZones() {
@@ -47,8 +47,14 @@ export class HomeComponent implements OnInit {
 
   filterParkingSpace(event) {
     const index = event.index;
-    this.filteredSpaces = this.spaces.filter(space => space.zone_id === this.zones[index]._id);
-    console.log(this.filteredSpaces)
+    this.dashboardService.getParkingSpacesByZoneID({ zoneID: this.zones[index]._id }).subscribe(res => {
+      if (res && res.data) {
+        console.log(this.filteredSpaces = res.data)
+      }
+      else {
+        this.matSnackbar.open('Something went wrong !', 'OK', { duration: 3000 })
+      }
+    })
   }
 
 }

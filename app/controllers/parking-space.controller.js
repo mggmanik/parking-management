@@ -34,6 +34,26 @@ exports.fetch = async (req, res) => {
     }
 }
 
+exports.filterByZoneID = async (req, res) => {
+    let findQuery = {};
+    if (req.body.zoneID) {
+        findQuery.zone_id = req.body.zoneID;
+    }
+    try {
+        const spaces = await parkingSpace.find(findQuery).sort({ space_title: 1 });
+        res.status(200).json({
+            message: 'List of Spaces',
+            data: spaces,
+        })
+    }
+    catch (error) {
+        res.status(500).json({
+            message: error
+        })
+        return;
+    }
+}
+
 exports.updateAll = async (req, res) => {
     var set = {};
 
