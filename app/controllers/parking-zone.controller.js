@@ -16,3 +16,20 @@ exports.create = async (req, res) => {
         return;
     }
 }
+
+exports.fetch = async (req, res) => {
+    try {
+        const zones = await parkingZone.find();
+
+        res.status(200).json({
+            message: 'List of Zones',
+            data: zones,
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            message: error
+        })
+        return;
+    }
+}
