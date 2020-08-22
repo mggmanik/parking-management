@@ -43,9 +43,10 @@ export class HomeComponent implements OnInit {
     this.fetchParkingSpaceByZoneID(this.index);
   }
 
-  openBookingModal(zoneID, spaceID, regnum) {
+  openBookingModal(zoneID, spaceID, regnum, parkID) {
     let dialogRef;
     let spaceUpdateData = {};
+    let bookingData = {};
 
     if (!regnum) {
       dialogRef = this.dialog.open(BookingModalComponent)
@@ -61,35 +62,54 @@ export class HomeComponent implements OnInit {
 
         if (!regnum) {
           spaceUpdateData = {
-            status: 'occupied',
             vehicle_reg_num: regNum
           }
+
+          bookingData = {
+            zone_id: zoneID,
+            space_id: spaceID,
+            vehicle_reg_num: regNum,
+            booking_date_time: new Date(),
+          }
+
+          this.dashboardService.createVehicleParking(bookingData).subscribe(res => {
+            if (res && res.data) {
+              spaceUpdateData['vehicle_parking_id'] = res.data._id;
+              this.dashboardService.updateParkingSpace(spaceID, spaceUpdateData).subscribe(res => {
+                if (res && res.data) {
+                  this.fetchParkingSpaceByZoneID(this.index);
+                }
+                else {
+                  this.matSnackbar.open('Something went wrong !', 'OK', { duration: 3000 })
+                }
+              })
+            }
+            else {
+              this.matSnackbar.open('Something went wrong !', 'OK', { duration: 3000 })
+            }
+          })
         }
         else {
           spaceUpdateData = {
-            status: 'vacant',
             vehicle_reg_num: ''
           }
+
+          this.dashboardService.updateVehicleParking(parkID, { release_date_time: new Date() }).subscribe(res => {
+            if (res && res.data) {
+              this.dashboardService.updateParkingSpace(spaceID, spaceUpdateData).subscribe(res => {
+                if (res && res.data) {
+                  this.fetchParkingSpaceByZoneID(this.index);
+                }
+                else {
+                  this.matSnackbar.open('Something went wrong !', 'OK', { duration: 3000 })
+                }
+              })
+            }
+            else {
+              this.matSnackbar.open('Something went wrong !', 'OK', { duration: 3000 })
+            }
+          })
         }
-
-        // remove satatus end to end
-
-        // const bookingData = {
-        //   zone_id: zoneID,
-        //   space_id: spaceID,
-        //   vehicle_reg_num: regNum,
-        //   booking_date_time: new Date(),
-        // }
-        // console.log(bookingData)
-
-        this.dashboardService.updateParkingSpace(spaceID, spaceUpdateData).subscribe(res => {
-          if (res && res.data) {
-            this.fetchParkingSpaceByZoneID(this.index);
-          }
-          else {
-            this.matSnackbar.open('Something went wrong !', 'OK', { duration: 3000 })
-          }
-        })
       }
     })
   }
