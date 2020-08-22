@@ -16,11 +16,13 @@ export class DashboardService {
   }
 
   getParkingZones() {
-    return this.http.get<any>(`${environment.apiUrl}/parkingzone/list`);
-  }
-
-  getParkingSpaces() {
-    return this.http.get<any>(`${environment.apiUrl}/parkingspace/list`);
+    let token = this.getToken();
+    return this.http.get<any>(`${environment.apiUrl}/parkingzone/list`,
+      {
+        headers: new HttpHeaders({
+          Authorization: token
+        })
+      });
   }
 
   getParkingSpacesByZoneID(data) {

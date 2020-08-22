@@ -5,6 +5,6 @@ const auth = require('../middleware/auth');
 const parkingZoneController = require('../controllers/parking-zone.controller');
 
 router.route('/create').post(auth, parkingZoneController.create);
-router.route('/list').get(parkingZoneController.fetch);
+router.route('/list').get(auth, parkingZoneController.fetch);
 
 module.exports = router;
