@@ -27,6 +27,17 @@ export class HomeComponent implements OnInit {
     // this.fetchParkingSpaces();
   }
 
+  onReset() {
+    this.dashboardService.resetParkingSpaces().subscribe(res => {
+      if (res && res.data) {
+        this.fetchParkingSpaceByZoneID(this.index);
+      }
+      else {
+        this.matSnackbar.open('Something went wrong !', 'OK', { duration: 3000 })
+      }
+    })
+  }
+
   filterParkingSpace(event) {
     this.index = event.index;
     this.fetchParkingSpaceByZoneID(this.index);
@@ -60,6 +71,8 @@ export class HomeComponent implements OnInit {
             vehicle_reg_num: ''
           }
         }
+
+        // remove satatus end to end
 
         // const bookingData = {
         //   zone_id: zoneID,

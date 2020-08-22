@@ -46,4 +46,19 @@ export class DashboardService {
       }
     )
   }
+
+  resetParkingSpaces() {
+    let token = this.getToken();
+    const data = {
+      status: 'vacant',
+      vehicle_reg_num: ''
+    }
+    return this.http.put<any>(`${environment.apiUrl}/parkingspace/updateAll`,
+      data,
+      {
+        headers: new HttpHeaders({
+          Authorization: token
+        })
+      })
+  }
 }
