@@ -11,6 +11,9 @@ const ParkingSpaceSchema = new mongoose.Schema({
         ref: 'parkingZones',
         required: 'Zone ID is required!'
     },
+    vehicle_reg_num: {
+        type: String,
+    },
     status: {
         type: String,
         default: "vacant",

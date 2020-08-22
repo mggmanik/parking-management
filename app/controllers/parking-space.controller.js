@@ -54,6 +54,43 @@ exports.filterByZoneID = async (req, res) => {
     }
 }
 
+exports.update = async (req, res) => {
+    var set = {};
+    const id = req.params._id
+    if (!id) {
+        res.status(404).json({
+            message: "No Spae ID"
+        })
+        return;
+    }
+    set = req.body
+    set.updated = Date.now()
+
+    try {
+        await parkingSpace.updateOne({ _id: id }, { $set: set }, function (err, reply) {
+            if (err) {
+                res.status(400).json({
+                    message: err
+                })
+                return;
+            }
+            else {
+                res.status(200).json({
+                    message: "updated successfully",
+                    data: reply
+                })
+            }
+
+        })
+    }
+    catch (err) {
+        res.status(400).json({
+            message: err
+        })
+        return;
+    }
+}
+
 exports.updateAll = async (req, res) => {
     var set = {};
 
