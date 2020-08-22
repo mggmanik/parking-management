@@ -34,4 +34,16 @@ export class DashboardService {
       }
     )
   }
+
+  updateParkingSpace(id, data) {
+    let token = this.getToken();
+    return this.http.put<any>(`${environment.apiUrl}/parkingspace/update/${id}`,
+      data,
+      {
+        headers: new HttpHeaders({
+          Authorization: token
+        })
+      }
+    )
+  }
 }

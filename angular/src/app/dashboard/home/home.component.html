@@ -11,11 +11,11 @@
                             <div class="spacecard">
                                 <p><strong>{{s.space_title}}</strong></p>
                                 <div [ngClass]="(s.status === 'vacant') ? 'spacestatusvacant' : 'spacestatusoccupied'"
-                                    (click)="openBookingModal(z._id,s._id,s.status)">
+                                    (click)="openBookingModal(z._id,s._id,s.vehicle_reg_num)">
                                 </div>
                             </div>
                             <hr>
-                            <p align="center">Not Booked</p>
+                            <p align="center">{{s.vehicle_reg_num ? s.vehicle_reg_num : 'Not Booked'}}</p>
                         </div>
                     </div>
                 </div>

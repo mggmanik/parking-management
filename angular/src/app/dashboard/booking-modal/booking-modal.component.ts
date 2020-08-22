@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-booking-modal',
@@ -14,10 +14,14 @@ export class BookingModalComponent implements OnInit {
 
   constructor(
     private matSnackbar: MatSnackBar,
-    private dialogRef: MatDialogRef<BookingModalComponent>
+    private dialogRef: MatDialogRef<BookingModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit(): void {
+    if (this.data) {
+      this.registrationNumber.patchValue(this.data);
+    }
   }
 
   saveBooking() {

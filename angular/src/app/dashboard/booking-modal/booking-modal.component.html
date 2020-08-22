@@ -1,6 +1,7 @@
 <div class="parent">
     <div mat-dialog-title style="display: flex; justify-content: space-between;">
-        <div style="font-weight: 500; font-size: 18pt; font-family: 'Rubik', sans-serif;">Book</div>
+        <div style="font-weight: 500; font-size: 18pt; font-family: 'Rubik', sans-serif;">{{data ? 'Release' : 'Book'}}
+        </div>
         <span class="material-icons" [mat-dialog-close]="true">
             close
         </span>
