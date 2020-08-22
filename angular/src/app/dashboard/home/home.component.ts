@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { BookingModalComponent } from '../booking-modal/booking-modal.component';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +17,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private dashboardService: DashboardService,
-    private matSnackbar: MatSnackBar
+    private matSnackbar: MatSnackBar,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -53,6 +56,30 @@ export class HomeComponent implements OnInit {
       }
       else {
         this.matSnackbar.open('Something went wrong !', 'OK', { duration: 3000 })
+      }
+    })
+  }
+
+  openBookingModal(zoneID, spaceID, status) {
+    let dialogRef;
+    // if (status === 'vacant') {
+      dialogRef = this.dialog.open(BookingModalComponent)
+    // }
+    // else {
+    //   dialogRef = this.dialog.open(BookingModalComponent, {
+    //     data:
+    //   })
+    // }
+
+    dialogRef.afterClosed().subscribe(regNum => {
+      if (regNum && typeof regNum === 'string') {
+        const bookingData = {
+          zone_id: zoneID,
+          space_id: spaceID,
+          registrationNumber: regNum,
+          booking_date_time: new Date(),
+        }
+        console.log(bookingData)
       }
     })
   }

@@ -10,7 +10,8 @@
                         <div class="spaceContainer">
                             <div class="spacecard">
                                 <p><strong>{{s.space_title}}</strong></p>
-                                <div [ngClass]="(s.status === 'vacant') ? 'spacestatusvacant' : 'spacestatusoccupied'">
+                                <div [ngClass]="(s.status === 'vacant') ? 'spacestatusvacant' : 'spacestatusoccupied'"
+                                    (click)="openBookingModal(z._id,s._id,s.status)">
                                 </div>
                             </div>
                             <hr>
