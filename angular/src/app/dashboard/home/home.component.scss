@@ -1,0 +1,30 @@
+.spaceContent {
+    padding: 40px 24px;
+    max-height: 74vh;
+    overflow-y: auto;
+    width: 100%;
+    margin-left: unset;
+    .spaceContainer {
+        background: #ffffff;
+        box-shadow: 0px 1px 8px rgba(20, 46, 110, 0.6);
+        border-radius: 8px;
+        padding: 1%;
+        margin: 1%;
+        .spacecard {
+            display: flex;
+            justify-content: space-between;
+            .spacestatusvacant {
+                border-radius: 8px;
+                height: 30px;
+                width: 30px;
+                background-color: green;
+            }
+            .spacestatusoccupied {
+                border-radius: 8px;
+                height: 30px;
+                width: 30px;
+                background-color: lightgrey;
+            }
+        }
+    }
+}
