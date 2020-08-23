@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  signUpForm: FormGroup;
 
   constructor(
     private matSnackbar: MatSnackBar,
@@ -22,22 +21,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeLoginForm();
-    this.initializeSignUpForm();
   }
 
   initializeLoginForm() {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.pattern(/.+\@.+\..+/)]),
       password: new FormControl('', Validators.required)
-    })
-  }
-
-  initializeSignUpForm() {
-    this.signUpForm = new FormGroup({
-      name: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.pattern(/.+\@.+\..+/)]),
-      password: new FormControl('', Validators.required),
-      role: new FormControl('', Validators.required)
     })
   }
 
@@ -55,22 +44,5 @@ export class LoginComponent implements OnInit {
       this.matSnackbar.open('Please fill all mandatory fields !', 'OK', { duration: 3000 })
     }
   }
-
-  onSignUp() {
-    if (this.signUpForm.valid) {
-      console.log(this.signUpForm.value)
-      this.authService.signup(this.signUpForm.value).subscribe(user => {
-        if (user && user.Authorization) {
-          // this.router.navigateByUrl('/dashboard');
-          console.log(user)
-        } else {
-          this.matSnackbar.open('Incorrect credentials. Please try again.', 'OK', { duration: 3000 })
-        }
-      })
-    }
-    else {
-      this.matSnackbar.open('Please fill all mandatory fields !', 'OK', { duration: 3000 })
-    }
-  }
-
+  
 }
