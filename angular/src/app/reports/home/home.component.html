@@ -21,6 +21,9 @@
             <div class="searchbox">
                 <input type="text" style="width: 80%;" placeholder=" Search Reports..." [(ngModel)]="searchText">
             </div>
+            <div>
+                <button mat-raised-button color="primary">Export</button>
+            </div>
         </div>
         <table class="table-md">
             <tr class="blue_row">
@@ -28,7 +31,7 @@
                 <th>Parking Zone</th>
                 <th>Parking Space</th>
                 <th>Registration Number</th>
-                <th>Booking Time</th>
+                <th style="cursor: pointer;" (click)="sortOnBookingTime()">Booking Time</th>
                 <th>Release Time</th>
             </tr>
             <tbody>
