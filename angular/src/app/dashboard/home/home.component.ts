@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   index: number;
   zones = [];
   filteredSpaces = [];
+  isChecked: boolean;
 
   constructor(
     private dashboardService: DashboardService,
@@ -44,8 +45,22 @@ export class HomeComponent implements OnInit {
   }
 
   filterParkingSpace(event) {
+    this.isChecked = false;
     this.index = event.index;
     this.fetchParkingSpaceByZoneID(this.index);
+  }
+
+  onFilterVacantSpaces(event) {
+    if (event && event.target) {
+      if (event.target.checked) {
+        this.isChecked = true;
+        this.filteredSpaces = this.filteredSpaces.filter(space => space.vehicle_reg_num === '')
+      }
+      if (!event.target.checked) {
+        this.isChecked = false;
+        this.fetchParkingSpaceByZoneID(this.index);
+      }
+    }
   }
 
   openBookingModal(zoneID, spaceID, regnum, parkID) {
@@ -133,6 +148,7 @@ export class HomeComponent implements OnInit {
   fetchParkingSpaceByZoneID(i) {
     this.dashboardService.getParkingSpacesByZoneID({ zoneID: this.zones[i]._id }).subscribe(res => {
       if (res && res.data) {
+        this.isChecked = false;
         this.filteredSpaces = res.data;
       }
       else {
