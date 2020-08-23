@@ -84,3 +84,15 @@ exports.login = async (req, res) => {
         return;
     }
 }
+
+exports.isAgent = function (req, res, next) {
+    if (req.user.role === 'agent') {
+        next();
+    }
+    else {
+        res.status(500).json({
+            message: 'Need to be Booking Agent to perform this action!'
+        })
+        return;
+    }
+}

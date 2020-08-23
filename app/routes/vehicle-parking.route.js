@@ -3,10 +3,11 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 
 const vehicleParkingController = require('../controllers/vehicle-parking.controller');
+const userController = require('../controllers/user.controller');
 
-router.route('/create').post(auth, vehicleParkingController.create);
-router.route('/update/:_id').put(auth, vehicleParkingController.update);
-router.route('/deleteAll').delete(auth, vehicleParkingController.deleteAll);
+router.route('/create').post(auth, userController.isAgent, vehicleParkingController.create);
+router.route('/update/:_id').put(auth, userController.isAgent, vehicleParkingController.update);
+router.route('/deleteAll').delete(auth, userController.isAgent, vehicleParkingController.deleteAll);
 
 router.route('/reports').post(auth, vehicleParkingController.reports);
 
