@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit {
     if (event && event.target) {
       if (event.target.checked) {
         this.isChecked = true;
-        this.filteredSpaces = this.filteredSpaces.filter(space => space.vehicle_reg_num === '')
+        this.filteredSpaces = this.filteredSpaces.filter(space => !space.vehicle_reg_num)
       }
       if (!event.target.checked) {
         this.isChecked = false;

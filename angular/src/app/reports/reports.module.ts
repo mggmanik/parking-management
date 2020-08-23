@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AngularMaterialModule } from '../angular-material.module';
 import { HomeComponent } from './home/home.component';
 import { ReportRoutingModule } from './report-rotuing.module';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [HomeComponent],
@@ -14,7 +14,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ReactiveFormsModule,
     ReportRoutingModule,
     AngularMaterialModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
   ]
 })
 export class ReportsModule { }
