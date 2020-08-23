@@ -10,8 +10,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class BookingModalComponent implements OnInit {
 
-  registrationNumber = new FormControl('', Validators.required);
-
+  registrationNumber = new FormControl('', [Validators.required, Validators.pattern(/^[A-Z]{2}[0-9]{1,2}([A-Z])([A-Z]*)[0-9]{4}$/)]);
+  
   constructor(
     private matSnackbar: MatSnackBar,
     private dialogRef: MatDialogRef<BookingModalComponent>,
@@ -29,7 +29,7 @@ export class BookingModalComponent implements OnInit {
       this.dialogRef.close(this.registrationNumber.value);
     }
     else {
-      this.matSnackbar.open('Please fill the registration number!', 'OK', { duration: 3000 });
+      this.matSnackbar.open('Please fill valid registration number!', 'OK', { duration: 3000 });
     }
   }
 
