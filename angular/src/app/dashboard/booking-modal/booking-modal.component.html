@@ -10,7 +10,8 @@
     <div mat-dialog-content>
         <mat-form-field class="w-100">
             <mat-label>Vehicle Registration Number</mat-label>
-            <input matInput placeholder="Registration Number" type="text" [formControl]='registrationNumber' required>
+            <input matInput placeholder="Registration Number" type="text" style="text-transform: uppercase;"
+                [formControl]='registrationNumber' required>
         </mat-form-field>
         <div align="center">
             <button mat-raised-button color="primary" (click)="saveBooking()">{{data ? 'Release' : 'Book'}}</button>
