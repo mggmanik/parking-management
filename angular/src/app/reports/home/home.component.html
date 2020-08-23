@@ -1,0 +1,53 @@
+<div class="m-3">
+    <div style="display: flex; justify-content: space-between;">
+        <div>
+            <h2>Parking Zone Report</h2>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Booking Date</mat-label>
+                <input matInput [matDatepicker]="bookingDatePicker" [max]="currentDate" [value]="currentDate"
+                    (click)="bookingDatePicker.open()" placeholder="DD/MM/YY"
+                    (dateChange)="onSelectBookingDate($event)">
+                <mat-datepicker-toggle matSuffix [for]="bookingDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #bookingDatePicker></mat-datepicker>
+            </mat-form-field>
+        </div>
+    </div>
+    <hr>
+    <h1 align="center" *ngIf="reports.length === 0" class="mt-4">No Bookings made for the selected Date!</h1>
+    <div *ngIf="reports.length > 0" class="reportsContainer">
+        <div class="searchboxdiv">
+            <div class="searchbox">
+                <input type="text" style="width: 80%;" placeholder=" Search Reports..." [(ngModel)]="searchText">
+            </div>
+        </div>
+        <table class="table-md">
+            <tr class="blue_row">
+                <th></th>
+                <th>Parking Zone</th>
+                <th>Parking Space</th>
+                <th>Registration Number</th>
+                <th>Booking Time</th>
+                <th>Release Time</th>
+            </tr>
+            <tbody>
+                <tr *ngFor="let r of reports| filter:searchText; let i = index;">
+                    <td style="font-weight: 500;">{{i+1}}</td>
+                    <td>{{r.zone_title}}</td>
+                    <td>{{r.space_title}}</td>
+                    <td>{{r.vehicle_reg_num}}</td>
+                    <td>{{r.booking_date_time | date:'short'}}</td>
+                    <td>
+                        <div *ngIf="r.release_date_time">
+                            {{r.release_date_time | date:'short'}}
+                        </div>
+                        <div *ngIf="!r.release_date_time">
+                            Not Left Yet !
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

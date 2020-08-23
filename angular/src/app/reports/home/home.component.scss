@@ -1,0 +1,46 @@
+.reportsContainer {
+    background: #ffffff;
+    box-shadow: 0px 1px 8px rgba(20, 46, 110, 0.6);
+    border-radius: 8px;
+    padding: 2%;
+    margin-top: 20px;
+    max-height: 74vh;
+    overflow-y: auto;
+    table {
+        width: 100%;
+        margin-top: 20px;
+        th {
+            font-weight: 500;
+        }
+        th,
+        td {
+            padding: 20px 10px;
+            text-align: center;
+            color: #414d55;
+        }
+    }
+    .searchboxdiv {
+        display: flex;
+        justify-content: space-between;
+        .searchbox {
+            display: flex;
+            width: 40%;
+            align-items: center;
+            input[type="text"] {
+                border-radius: 6px;
+                border: none;
+                background-color: #f1f5f8;
+                font-size: 12px;
+                padding: 2% 8%;
+                width: 80%;
+                color: #90a1ac;
+                letter-spacing: 0.5px;
+            }
+        }
+    }
+}
+
+.blue_row {
+    background: #effeff;
+    border-radius: 8px;
+}

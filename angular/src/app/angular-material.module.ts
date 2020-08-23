@@ -17,6 +17,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatChipsModule,
     MatDialogModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatButtonModule,
     MatAutocompleteModule,
     MatStepperModule,
