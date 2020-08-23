@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import * as moment from 'moment';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import * as moment from 'moment';
 import { ReportService } from '../report.service';
 
 @Component({

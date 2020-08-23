@@ -11,6 +11,7 @@ import { BookingModalComponent } from '../booking-modal/booking-modal.component'
 })
 export class HomeComponent implements OnInit {
 
+  isAgent = false;
   index: number;
   zones = [];
   filteredSpaces = [];
@@ -23,6 +24,10 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    let user = JSON.parse(localStorage.getItem('pUser'));
+    if (user.role === 'agent') {
+      this.isAgent = true;
+    }
     this.fetchParkingZones();
   }
 
@@ -64,6 +69,9 @@ export class HomeComponent implements OnInit {
   }
 
   openBookingModal(zoneID, spaceID, regnum, parkID) {
+    if (!this.isAgent) {
+      return;
+    }
     let dialogRef;
     let spaceUpdateData = {};
     let bookingData = {};
