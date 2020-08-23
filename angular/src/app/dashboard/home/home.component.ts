@@ -13,7 +13,6 @@ export class HomeComponent implements OnInit {
 
   index: number;
   zones = [];
-  spaces = [];
   filteredSpaces = [];
 
   constructor(

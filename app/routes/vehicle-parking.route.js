@@ -8,4 +8,6 @@ router.route('/create').post(auth, vehicleParkingController.create);
 router.route('/update/:_id').put(auth, vehicleParkingController.update);
 router.route('/deleteAll').delete(auth, vehicleParkingController.deleteAll);
 
+router.route('/reports').post(auth, vehicleParkingController.reports);
+
 module.exports = router;
