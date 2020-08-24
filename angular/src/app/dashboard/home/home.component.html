@@ -19,7 +19,14 @@
                                 </div>
                             </div>
                             <hr>
-                            <p align="center">{{s.vehicle_reg_num ? s.vehicle_reg_num : 'NOT BOOKED'}}</p>
+                            <div align="center">
+                                <div *ngIf="s.vehicle_reg_num">
+                                    <strong>{{s.vehicle_reg_num}}</strong>
+                                </div>
+                                <div *ngIf="!s.vehicle_reg_num">
+                                    NOT BOOKED
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
