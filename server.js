@@ -32,7 +32,7 @@ app.use((req, res, next) => {
     next()
 })
 
-// app.use(express.static(path.join(__dirname, '/build')))
+app.use(express.static(path.join(__dirname, '/build')))
 
 // setting up mongoose
 
@@ -60,9 +60,9 @@ app.use("/api/v1/vehicleparking", vehicleParkingRoute);
 // Setup server port
 var port = process.env.PORT || 3000;
 
-// app.use((req, res) => {
-//     res.sendFile(path.join(__dirname, "build", "index.html"))
-// })
+app.use((req, res) => {
+    res.sendFile(path.join(__dirname, "build", "index.html"))
+})
 
 // Launch app to listen to specified port
 app.listen(port, function () {
