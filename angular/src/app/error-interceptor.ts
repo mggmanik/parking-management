@@ -10,6 +10,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     constructor(private matSnackBar: MatSnackBar) {
     }
 
+    // display snackbars when api gives error
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(req).pipe(
             catchError((error: HttpErrorResponse) => {

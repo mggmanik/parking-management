@@ -33,10 +33,12 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  // sort booking reports data on booking time
   sortOnBookingTime() {
     this.reports.sort((a, b) => new Date(b.booking_date_time).valueOf() - new Date(a.booking_date_time).valueOf());
   }
 
+  // fetch reports from backend
   getReports(data) {
     this.reportService.fetchReports(data).subscribe(res => {
       if (res && res.data) {

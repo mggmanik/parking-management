@@ -21,10 +21,8 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.checkForTokenOnPageLoad();
+        // don't show header on login screen
         if (window.location.href.includes('login')) {
-          this.showHeader = false;
-        }
-        else if (window.location.href.includes('not-found')) {
           this.showHeader = false;
         }
         else {
@@ -34,6 +32,7 @@ export class AppComponent implements OnInit {
     })
   }
 
+  // check for valid token on page load
   checkForTokenOnPageLoad() {
     let user = JSON.parse(localStorage.getItem('pUser'));
     if (user !== null) {

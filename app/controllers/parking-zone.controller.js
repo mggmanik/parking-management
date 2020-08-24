@@ -1,5 +1,6 @@
 const parkingZone = require('../models/parking-zone.model');
 
+// create parking zone
 exports.create = async (req, res) => {
     try {
         zone = new parkingZone(req.body);
@@ -17,6 +18,7 @@ exports.create = async (req, res) => {
     }
 }
 
+// fetch parking zones
 exports.fetch = async (req, res) => {
     try {
         const zones = await parkingZone.find().sort({ zone_title: 1 });

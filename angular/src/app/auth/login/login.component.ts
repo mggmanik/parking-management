@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe(user => {
         if (user && user.Authorization) {
+          // redirect to dashboard after succefull login
           this.router.navigateByUrl('/dashboard');
         } else {
           this.matSnackbar.open('Incorrect credentials. Please try again.', 'OK', { duration: 3000 })

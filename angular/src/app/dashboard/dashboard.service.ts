@@ -15,6 +15,7 @@ export class DashboardService {
     return JSON.parse(localStorage.getItem('pUser')).Authorization;
   }
 
+  // fetch parking zones
   getParkingZones() {
     let token = this.getToken();
     return this.http.get<any>(`${environment.apiUrl}/parkingzone/list`,
@@ -25,6 +26,7 @@ export class DashboardService {
       });
   }
 
+  // fetch parking spaces by parking zone ID
   getParkingSpacesByZoneID(data) {
     let token = this.getToken();
     return this.http.post<any>(`${environment.apiUrl}/parkingspace/filter`,
@@ -37,6 +39,7 @@ export class DashboardService {
     )
   }
 
+  // update single parking space
   updateParkingSpace(id, data) {
     let token = this.getToken();
     return this.http.put<any>(`${environment.apiUrl}/parkingspace/update/${id}`,
@@ -49,6 +52,7 @@ export class DashboardService {
     )
   }
 
+  // reset parking spaces
   resetParkingSpaces() {
     let token = this.getToken();
     const data = {
@@ -63,6 +67,7 @@ export class DashboardService {
       })
   }
 
+  // create vehicle parking booking
   createVehicleParking(data) {
     let token = this.getToken();
     return this.http.post<any>(`${environment.apiUrl}/vehicleparking/create`,
@@ -75,6 +80,7 @@ export class DashboardService {
     )
   }
 
+  // update vehicle parking booking to enter release date time
   updateVehicleParking(id, data) {
     let token = this.getToken();
     return this.http.put<any>(`${environment.apiUrl}/vehicleparking/update/${id}`,
@@ -87,6 +93,7 @@ export class DashboardService {
     )
   }
 
+  // remove all vehicle parking bookings from the table
   deleteAllVehicleParkings() {
     let token = this.getToken();
     return this.http.delete<any>(`${environment.apiUrl}/vehicleparking/deleteAll`,

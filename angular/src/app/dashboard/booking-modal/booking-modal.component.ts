@@ -10,8 +10,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class BookingModalComponent implements OnInit {
 
+  // regex for validating indian vehicle registration number
   registrationNumber = new FormControl('', [Validators.required, Validators.pattern(/^[A-Z]{2}[0-9]{1,2}([A-Z])([A-Z]*)[0-9]{4}$/)]);
-  
+
   constructor(
     private matSnackbar: MatSnackBar,
     private dialogRef: MatDialogRef<BookingModalComponent>,
@@ -24,6 +25,7 @@ export class BookingModalComponent implements OnInit {
     }
   }
 
+  // enter vehicle registration number
   saveBooking() {
     if (this.registrationNumber.valid) {
       this.dialogRef.close(this.registrationNumber.value);

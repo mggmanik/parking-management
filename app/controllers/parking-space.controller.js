@@ -1,5 +1,6 @@
 const parkingSpace = require('../models/parking-space.model');
 
+// create parking space
 exports.create = async (req, res) => {
     try {
         space = new parkingSpace(req.body);
@@ -17,6 +18,7 @@ exports.create = async (req, res) => {
     }
 }
 
+// fetch parking spaces
 exports.fetch = async (req, res) => {
     try {
         const spaces = await parkingSpace.find().sort({ space_title: 1 });
@@ -34,6 +36,7 @@ exports.fetch = async (req, res) => {
     }
 }
 
+// fetch parking spaces by parking zone ID
 exports.filterByZoneID = async (req, res) => {
     let findQuery = {};
     if (req.body.zoneID) {
@@ -54,6 +57,7 @@ exports.filterByZoneID = async (req, res) => {
     }
 }
 
+// update single parking space
 exports.update = async (req, res) => {
     var set = {};
     const id = req.params._id
@@ -91,6 +95,7 @@ exports.update = async (req, res) => {
     }
 }
 
+// update all parking spaces
 exports.updateAll = async (req, res) => {
     var set = {};
 

@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // check if user role is booking agent
     let user = JSON.parse(localStorage.getItem('pUser'));
     if (user.role === 'agent') {
       this.isAgent = true;
@@ -31,6 +32,7 @@ export class HomeComponent implements OnInit {
     this.fetchParkingZones();
   }
 
+  // reset parking spaces and removed vehicle parking booking data from table
   onReset() {
     this.dashboardService.resetParkingSpaces().subscribe(res => {
       if (res && res.data) {
@@ -55,6 +57,7 @@ export class HomeComponent implements OnInit {
     this.fetchParkingSpaceByZoneID(this.index);
   }
 
+  // show vacant parking spaces
   onFilterVacantSpaces(event) {
     if (event && event.target) {
       if (event.target.checked) {
@@ -68,6 +71,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  // on vehicle parking booking and release
   openBookingModal(zoneID, spaceID, regnum, parkID) {
     if (!this.isAgent) {
       return;
@@ -142,6 +146,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  // fetch parking zones
   fetchParkingZones() {
     this.dashboardService.getParkingZones().subscribe(res => {
       if (res && res.data) {
@@ -153,6 +158,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  // fetch parking spaces by parking zone ID
   fetchParkingSpaceByZoneID(i) {
     this.dashboardService.getParkingSpacesByZoneID({ zoneID: this.zones[i]._id }).subscribe(res => {
       if (res && res.data) {

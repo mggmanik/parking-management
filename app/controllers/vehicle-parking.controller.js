@@ -1,5 +1,6 @@
 const vehicleParking = require('../models/vehicle-parking.model');
 
+// create vehicle parking booking
 exports.create = async (req, res) => {
     try {
         vParks = new vehicleParking(req.body);
@@ -17,6 +18,7 @@ exports.create = async (req, res) => {
     }
 }
 
+// update vehicle parking booking
 exports.update = async (req, res) => {
     var set = {};
     const id = req.params._id
@@ -54,6 +56,7 @@ exports.update = async (req, res) => {
     }
 }
 
+// delete all vehicle parking bookings
 exports.deleteAll = async (req, res) => {
     try {
         await vehicleParking.deleteMany({}, function (err, reply) {
@@ -80,6 +83,7 @@ exports.deleteAll = async (req, res) => {
     }
 }
 
+// fetch parking reports on selectes booking date time
 exports.reports = async (req, res) => {
     try {
         await vehicleParking.aggregate([

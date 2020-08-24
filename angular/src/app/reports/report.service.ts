@@ -15,6 +15,7 @@ export class ReportService {
     return JSON.parse(localStorage.getItem('pUser')).Authorization;
   }
 
+  // fetch vehicle parking reports from backend
   fetchReports(data) {
     let token = this.getToken();
     return this.http.post<any>(`${environment.apiUrl}/vehicleparking/reports`,

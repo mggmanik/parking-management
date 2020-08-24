@@ -2,6 +2,7 @@ const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+// user signup
 exports.signup = async (req, res) => {
 
     if (req.body.email && req.body.email != "") {
@@ -23,7 +24,7 @@ exports.signup = async (req, res) => {
                 expiresIn: '24h' // expires in 24 hours
             }
         );
-
+        // return the JWT token for the future API calls
         res.status(201).json({
             id: user._id,
             name: user.name,
@@ -40,6 +41,7 @@ exports.signup = async (req, res) => {
     }
 }
 
+// user login
 exports.login = async (req, res) => {
     var findQuery;
     if (req.body.email && req.body.email != "") {
@@ -85,6 +87,7 @@ exports.login = async (req, res) => {
     }
 }
 
+// middleware to check if the user is booking agent
 exports.isAgent = function (req, res, next) {
     if (req.user.role === 'agent') {
         next();
